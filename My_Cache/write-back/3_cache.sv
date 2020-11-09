@@ -255,6 +255,11 @@ module d_cache (
                 cache_valid_way_1[i] <= 0;
                 cache_valid_way_2[i] <= 0;
                 cache_valid_way_3[i] <= 0;
+                // dirty
+                cache_dirty_way_0[i] <= 1'b0;
+                cache_dirty_way_1[i] <= 1'b0;
+                cache_dirty_way_2[i] <= 1'b0;
+                cache_dirty_way_3[i] <= 1'b0;
                 // way_age
                 way_age_way_0[i] <= 1;
                 way_age_way_1[i] <= 1;
@@ -271,21 +276,25 @@ module d_cache (
                 case (way_hold_max_age[index_save])
                     2'd0: begin
                         cache_valid_way_0[index_save]  <=  1'b1;
+                        cache_dirty_way_0[index]  <=  1'b0;
                         cache_tags_way_0 [index_save]  <=  tag_save;
                         cache_block_way_0[index_save]  <=  cache_data_rdata; //写入Cache line
                     end
                     2'd1: begin
                         cache_valid_way_1[index_save]  <=  1'b1;
+                        cache_dirty_way_1[index]  <=  1'b0;
                         cache_tags_way_1 [index_save]  <=  tag_save;
                         cache_block_way_1[index_save]  <=  cache_data_rdata; //写入Cache line
                     end
                     2'd2: begin
                         cache_valid_way_2[index_save]  <=  1'b1;
+                        cache_dirty_way_2[index]  <=  1'b0;
                         cache_tags_way_2 [index_save]  <=  tag_save;
                         cache_block_way_2[index_save]  <=  cache_data_rdata; //写入Cache line
                     end
                     2'd3: begin
                         cache_valid_way_3[index_save]  <=  1'b1;
+                        cache_dirty_way_3[index]  <=  1'b0;
                         cache_tags_way_3 [index_save]  <=  tag_save;
                         cache_block_way_3[index_save]  <=  cache_data_rdata; //写入Cache line
                     end
