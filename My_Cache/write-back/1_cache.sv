@@ -33,24 +33,25 @@
 module d_cache (
     input wire clk, rst,
     //mips core
-    input         cpu_data_req     ,//p_strobe
-    input         cpu_data_wr      ,//p_rw
-    input  [1 :0] cpu_data_size    ,//p_size
-    input  [31:0] cpu_data_addr    ,//p_a
-    input  [31:0] cpu_data_wdata   ,//p_dout
-    output [31:0] cpu_data_rdata   ,//p_din
-    output        cpu_data_addr_ok ,//p_ready
-    output        cpu_data_data_ok ,//p_ready
+    input          cpu_data_req       ,
+    input          cpu_data_wr        ,
+    input   [1 :0] cpu_data_size      ,
+    input   [31:0] cpu_data_addr      ,
+    input   [31:0] cpu_data_wdata     ,
+    output  [31:0] cpu_data_rdata     ,
+    output         cpu_data_addr_ok   ,  // assign cpu_data_addr_ok = read & cpu_data_req & hit | cache_data_req & cache_data_addr_ok;
+    output         cpu_data_data_ok   ,  // assign cpu_data_data_ok = read & cpu_data_req & hit | cache_data_data_ok;
+
 
     //axi interface
-    output         cache_data_req     ,//m_strobe
-    output         cache_data_wr      ,//m_rw
-    output  [1 :0] cache_data_size    ,//m_size
-    output  [31:0] cache_data_addr    ,//m_a
-    output  [31:0] cache_data_wdata   ,//m_din
-    input   [31:0] cache_data_rdata   ,//m_dout
-    input          cache_data_addr_ok ,//m_ready
-    input          cache_data_data_ok //m_ready
+    output         cache_data_req     ,
+    output         cache_data_wr      ,
+    output  [1 :0] cache_data_size    ,
+    output  [31:0] cache_data_addr    ,
+    output  [31:0] cache_data_wdata   ,
+    input   [31:0] cache_data_rdata   ,
+    input          cache_data_addr_ok ,
+    input          cache_data_data_ok
 );
 
     //Cache配置
@@ -60,17 +61,21 @@ module d_cache (
     localparam CACHE_DEEPTH = 1 << INDEX_WIDTH;
 
     //Cache存储单元
-
     // 保存有效信息
     reg                                                 cache_valid_way_0           [CACHE_DEEPTH - 1 : 0];
     reg                                                 cache_valid_way_1           [CACHE_DEEPTH - 1 : 0];
     reg                                                 cache_valid_way_2           [CACHE_DEEPTH - 1 : 0];
     reg                                                 cache_valid_way_3           [CACHE_DEEPTH - 1 : 0];
+    // 保存脏信息
+    reg                                                 cache_dirty_way_0               [CACHE_DEEPTH-1:0];
+    reg                                                 cache_dirty_way_1               [CACHE_DEEPTH-1:0];
+    reg                                                 cache_dirty_way_2               [CACHE_DEEPTH-1:0];
+    reg                                                 cache_dirty_way_3               [CACHE_DEEPTH-1:0];
     // 保存标记
-    reg     [TAG_WIDTH-1:0]                             cache_tags_way_0             [CACHE_DEEPTH - 1 : 0];
-    reg     [TAG_WIDTH-1:0]                             cache_tags_way_1             [CACHE_DEEPTH - 1 : 0];
-    reg     [TAG_WIDTH-1:0]                             cache_tags_way_2             [CACHE_DEEPTH - 1 : 0];
-    reg     [TAG_WIDTH-1:0]                             cache_tags_way_3             [CACHE_DEEPTH - 1 : 0];
+    reg     [TAG_WIDTH-1:0]                             cache_tags_way_0            [CACHE_DEEPTH - 1 : 0];
+    reg     [TAG_WIDTH-1:0]                             cache_tags_way_1            [CACHE_DEEPTH - 1 : 0];
+    reg     [TAG_WIDTH-1:0]                             cache_tags_way_2            [CACHE_DEEPTH - 1 : 0];
+    reg     [TAG_WIDTH-1:0]                             cache_tags_way_3            [CACHE_DEEPTH - 1 : 0];
     // 保存数据
     reg     [31 : 0]                                    cache_block_way_0           [CACHE_DEEPTH - 1 : 0];
     reg     [31 : 0]                                    cache_block_way_1           [CACHE_DEEPTH - 1 : 0];
@@ -107,6 +112,11 @@ module d_cache (
                            (cache_valid_way_1[index] && tag == cache_tags_way_1[index])||
                            (cache_valid_way_2[index] && tag == cache_tags_way_2[index])||
                            (cache_valid_way_3[index] && tag == cache_tags_way_3[index]);
+                           
+    assign  dirty        = hit && hit_way==0 ? cache_dirty_way_0[index] : 
+                           hit && hit_way==1 ? cache_dirty_way_1[index] : 
+                           hit && hit_way==2 ? cache_dirty_way_2[index] :
+                           hit && hit_way==3 ? cache_dirty_way_3[index] : 0;
     
     assign hit_way       = (cache_valid_way_0[index] && tag == cache_tags_way_0[index]) ? 0:
                            (cache_valid_way_1[index] && tag == cache_tags_way_1[index]) ? 1:
