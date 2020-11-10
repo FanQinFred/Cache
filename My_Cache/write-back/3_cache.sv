@@ -39,10 +39,8 @@ module d_cache (
     input   [31:0] cpu_data_addr      ,
     input   [31:0] cpu_data_wdata     ,
     output  [31:0] cpu_data_rdata     ,
-    output         cpu_data_addr_ok   ,  // assign cpu_data_addr_ok = read & cpu_data_req & hit | cache_data_req & cache_data_addr_ok;
-    output         cpu_data_data_ok   ,  // assign cpu_data_data_ok = read & cpu_data_req & hit | cache_data_data_ok;
-
-
+    output         cpu_data_addr_ok   ,
+    output         cpu_data_data_ok   ,
     //axi interface
     output         cache_data_req     ,
     output         cache_data_wr      ,
@@ -67,10 +65,10 @@ module d_cache (
     reg                                                 cache_valid_way_2           [CACHE_DEEPTH - 1 : 0];
     reg                                                 cache_valid_way_3           [CACHE_DEEPTH - 1 : 0];
     // 保存脏信息
-    reg                                                 cache_dirty_way_0               [CACHE_DEEPTH-1:0];
-    reg                                                 cache_dirty_way_1               [CACHE_DEEPTH-1:0];
-    reg                                                 cache_dirty_way_2               [CACHE_DEEPTH-1:0];
-    reg                                                 cache_dirty_way_3               [CACHE_DEEPTH-1:0];
+    reg                                                 cache_dirty_way_0           [CACHE_DEEPTH-1:0];
+    reg                                                 cache_dirty_way_1           [CACHE_DEEPTH-1:0];
+    reg                                                 cache_dirty_way_2           [CACHE_DEEPTH-1:0];
+    reg                                                 cache_dirty_way_3           [CACHE_DEEPTH-1:0];
     // 保存标记
     reg     [TAG_WIDTH-1:0]                             cache_tags_way_0            [CACHE_DEEPTH - 1 : 0];
     reg     [TAG_WIDTH-1:0]                             cache_tags_way_1            [CACHE_DEEPTH - 1 : 0];
@@ -102,7 +100,7 @@ module d_cache (
     wire    [TAG_WIDTH-1:0]                             tag;
 
     assign  offset = cpu_data_addr[OFFSET_WIDTH - 1 : 0];
-    assign  index  = cpu_data_addr[INDEX_WIDTH + OFFSET_WIDTH - 1 : OFFSET_WIDTH];
+    assign  index  = cpu_data_addr[INDEX_WIDTH + OFFSET_WIDTH - 1 : OFFSET_WIDTH];  //11:2
     assign  tag    = cpu_data_addr[31 : INDEX_WIDTH + OFFSET_WIDTH];
 
     //访问Cache line
@@ -120,7 +118,7 @@ module d_cache (
                            (cache_valid_way_2[index] && tag == cache_tags_way_2[index])||
                            (cache_valid_way_3[index] && tag == cache_tags_way_3[index]);
                            
-    assign  dirty        = hit && hit_way==0 ? cache_dirty_way_0[index] : 
+    assign dirty         = hit && hit_way==0 ? cache_dirty_way_0[index] : 
                            hit && hit_way==1 ? cache_dirty_way_1[index] : 
                            hit && hit_way==2 ? cache_dirty_way_2[index] :
                            hit && hit_way==3 ? cache_dirty_way_3[index] : 0;
@@ -135,11 +133,10 @@ module d_cache (
                            (cache_valid_way_1[index] && tag == cache_tags_way_1[index])||
                            (cache_valid_way_2[index] && tag == cache_tags_way_2[index])||
                            (cache_valid_way_3[index] && tag == cache_tags_way_3[index]);
-    // 获得cache对应的tag
-    assign c_tag                        =  hit && hit_way==0 ? cache_tags_way_0[index] : 
-                                           hit && hit_way==1 ? cache_tags_way_1[index] : 
-                                           hit && hit_way==2 ? cache_tags_way_2[index] :
-                                           hit && hit_way==3 ? cache_tags_way_3[index] : 0;
+
+    assign c_tag         = (way_hold_max_age[index]==0) ? cache_tags_way_0[index] : (way_hold_max_age[index]==1) ? cache_tags_way_1[index] : 
+                           (way_hold_max_age[index]==2) ? cache_tags_way_2[index] : (way_hold_max_age[index]==3) ? cache_tags_way_3[index] : 0;
+
     // 获得cache对应的data
     assign c_block                      =  hit && hit_way==0 ? cache_block_way_0[index] :
                                            hit && hit_way==1 ? cache_block_way_1[index] :
@@ -157,41 +154,6 @@ module d_cache (
     wire write;
     assign read  = ~write;
     assign write = cpu_data_wr;
-
-    // data_cache state machine
-    // 仅用于控制读与写请求信号
-    wire   dram_wr_val,dram_rd_val;
-    assign dram_wr_val = (cpu_data_req & write) ? cache_data_data_ok : 0;
-    assign dram_rd_val = (cpu_data_req & read ) ? cache_data_data_ok : 0; 
-    // dram write/read request
-    // 通过state控制读与写请求信号
-    wire    dram_wr_req,dram_rd_req;
-    assign  dram_wr_req = ( state == WR_DRAM );
-    assign  dram_rd_req = ( state == RD_DRAM );
-    always@(posedge clk) begin
-        if(rst) begin
-            state   <=  CPU_EXEC;
-        end
-        else begin
-            case(state)
-                CPU_EXEC:if( miss & dirty & cpu_data_req)          // dirty block write back to dram
-                            state   <=  WR_DRAM;
-                        else if( miss & cpu_data_req)              // request new block from dram
-                            state   <=  RD_DRAM;
-                        else
-                            state   <=  CPU_EXEC;
-                WR_DRAM:if(dram_wr_val & cpu_data_req & write)
-                            state   <=  RD_DRAM;
-                        else
-                            state   <=  WR_DRAM;
-                RD_DRAM:if(dram_rd_val & cpu_data_req & read)
-                            state   <=  CPU_EXEC;   
-                        else
-                            state   <=  RD_DRAM;
-                default:    state   <=  CPU_EXEC;   
-            endcase
-        end
-    end
 
     //读内存控制开始
     //变量read_req, addr_rcv, read_finish用于构造类sram信号。
@@ -220,15 +182,53 @@ module d_cache (
 
     //output to mips core
     assign cpu_data_rdata   = hit ? c_block : cache_data_rdata;
-    assign cpu_data_addr_ok = read & cpu_data_req & hit | cache_data_req & cache_data_addr_ok;
-    assign cpu_data_data_ok = read & cpu_data_req & hit | cache_data_data_ok;
-
+    assign cpu_data_addr_ok = cpu_data_req & hit;//hit;//read & cpu_data_req & hit | cache_data_req & cache_data_addr_ok;
+    assign cpu_data_data_ok = cpu_data_req & hit;//read & cpu_data_req & hit | cache_data_data_ok;
+ 
+    wire [31:0] dram_wr_addr,dram_rd_addr;
+    assign  dram_wr_addr              =   {c_tag,index,2'b00};
+    assign  dram_rd_addr              =   cpu_data_addr;
     //output to axi interface
-    assign cache_data_req   = dram_rd_req & ~addr_rcv | dram_wr_req & ~waddr_rcv;
-    assign cache_data_wr    = cpu_data_wr;
-    assign cache_data_size  = cpu_data_size;        //    wire    dram_wr_req,dram_rd_req;
-    assign cache_data_addr  = cpu_data_addr;
-    assign cache_data_wdata = cpu_data_wdata;
+    assign cache_data_req   = (dram_rd_req ) | (dram_wr_req);//dram_rd_req & ~addr_rcv | dram_wr_req & ~waddr_rcv;
+    assign cache_data_wr    = dram_wr_req ? 1 : 0;;
+    assign cache_data_size  = 2'b10;        //    wire    dram_wr_req,dram_rd_req;
+    assign cache_data_addr  = dram_wr_req ? dram_wr_addr : dram_rd_req ?  dram_rd_addr : 32'b0;//cpu_data_addr;
+    assign cache_data_wdata = c_block;//cpu_data_wdata;
+
+    // data_cache state machine
+    // 仅用于控制读与写请求信号
+    wire   dram_wr_val,dram_rd_val;
+    assign dram_wr_val = dram_wr_req ? cache_data_data_ok : 0;
+    assign dram_rd_val = dram_rd_req ? cache_data_data_ok : 0; 
+    // dram write/read request
+    // 通过state控制读与写请求信号
+    wire    dram_wr_req,dram_rd_req;
+    assign  dram_wr_req = ( state == WR_DRAM );
+    assign  dram_rd_req = ( state == RD_DRAM );
+    always@(posedge clk) begin
+        if(rst) begin
+            state   <=  CPU_EXEC;
+        end
+        else begin
+            case(state)
+                CPU_EXEC:if( miss & dirty & cpu_data_req)          // dirty block write back to dram
+                            state   <=  WR_DRAM;
+                        else if( miss & cpu_data_req)              // request new block from dram
+                            state   <=  RD_DRAM;
+                        else
+                            state   <=  CPU_EXEC;
+                WR_DRAM:if(dram_wr_val & dram_wr_req)
+                            state   <=  RD_DRAM;
+                        else
+                            state   <=  WR_DRAM;
+                RD_DRAM:if(dram_rd_val & dram_rd_req)
+                            state   <=  CPU_EXEC;   
+                        else
+                            state   <=  RD_DRAM;
+                default:    state   <=  CPU_EXEC;   
+            endcase
+        end
+    end
 
     //写入Cache
     //保存地址中的tag, index，防止addr发生改变
@@ -272,29 +272,29 @@ module d_cache (
             max_age_way <= 0;
         end
         else begin
-            if(read_finish) begin //读缺失，访存结束时
+            if(dram_rd_val) begin //读缺失，访存结束时
                 case (way_hold_max_age[index_save])
                     2'd0: begin
                         cache_valid_way_0[index_save]  <=  1'b1;
-                        cache_dirty_way_0[index]  <=  1'b0;
+                        cache_dirty_way_0[index_save]  <=  1'b0;
                         cache_tags_way_0 [index_save]  <=  tag_save;
                         cache_block_way_0[index_save]  <=  cache_data_rdata; //写入Cache line
                     end
                     2'd1: begin
                         cache_valid_way_1[index_save]  <=  1'b1;
-                        cache_dirty_way_1[index]  <=  1'b0;
+                        cache_dirty_way_1[index_save]  <=  1'b0;
                         cache_tags_way_1 [index_save]  <=  tag_save;
                         cache_block_way_1[index_save]  <=  cache_data_rdata; //写入Cache line
                     end
                     2'd2: begin
                         cache_valid_way_2[index_save]  <=  1'b1;
-                        cache_dirty_way_2[index]  <=  1'b0;
+                        cache_dirty_way_2[index_save]  <=  1'b0;
                         cache_tags_way_2 [index_save]  <=  tag_save;
                         cache_block_way_2[index_save]  <=  cache_data_rdata; //写入Cache line
                     end
                     2'd3: begin
                         cache_valid_way_3[index_save]  <=  1'b1;
-                        cache_dirty_way_3[index]  <=  1'b0;
+                        cache_dirty_way_3[index_save]  <=  1'b0;
                         cache_tags_way_3 [index_save]  <=  tag_save;
                         cache_block_way_3[index_save]  <=  cache_data_rdata; //写入Cache line
                     end
@@ -326,7 +326,7 @@ module d_cache (
                 way_age_way_3[index_save] <= way_hold_max_age[index_save]==3 ? 0 : way_age_way_3[index_save] + 1;
 
             end
-            else if(write & cpu_data_req & hit) begin   //写命中时需要写Cache
+            else if(write & hit) begin   //写命中时需要写Cache
                 //更新脏位
                 case (hit_way)
                     0: begin
