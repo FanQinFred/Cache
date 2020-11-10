@@ -1,0 +1,2 @@
+unsigned_mult.vhd,vhdl,xil_defaultlib,../../../../../../rtl/xilinx_ip/unsigned_mult/sim/unsigned_mult.vhd,
+glbl.v,Verilog,xil_defaultlib,glbl.v

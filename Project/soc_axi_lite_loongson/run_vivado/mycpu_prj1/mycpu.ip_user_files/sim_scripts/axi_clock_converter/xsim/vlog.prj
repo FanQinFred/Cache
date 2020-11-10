@@ -1,0 +1,6 @@
+verilog xil_defaultlib --include "../../../ipstatic/hdl" \
+"../../../../../../rtl/xilinx_ip/axi_clock_converter/sim/axi_clock_converter.v" \
+
+verilog xil_defaultlib "glbl.v"
+
+nosort

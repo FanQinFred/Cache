@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2019.2 (64-bit)
+# SW Build 2708876 on Wed Nov  6 21:40:23 MST 2019
+# IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
+# Start of session at: Tue Nov 10 12:57:48 2020
+# Process ID: 3632
+# Current directory: C:/Users/fanqi/Documents/GitHub/Cache/Project/soc_axi_lite_loongson/run_vivado/mycpu_prj1/mycpu.runs/clk_pll_synth_1
+# Command line: vivado.exe -log clk_pll.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source clk_pll.tcl
+# Log file: C:/Users/fanqi/Documents/GitHub/Cache/Project/soc_axi_lite_loongson/run_vivado/mycpu_prj1/mycpu.runs/clk_pll_synth_1/clk_pll.vds
+# Journal file: C:/Users/fanqi/Documents/GitHub/Cache/Project/soc_axi_lite_loongson/run_vivado/mycpu_prj1/mycpu.runs/clk_pll_synth_1\vivado.jou
+#-----------------------------------------------------------
+source clk_pll.tcl -notrace

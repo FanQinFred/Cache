@@ -1,0 +1,2 @@
+signed_mult.vhd,vhdl,xil_defaultlib,../../../../../../rtl/xilinx_ip/signed_mult/sim/signed_mult.vhd,
+glbl.v,Verilog,xil_defaultlib,glbl.v

@@ -1,0 +1,161 @@
+#-----------------------------------------------------------
+# Vivado v2019.2 (64-bit)
+# SW Build 2708876 on Wed Nov  6 21:40:23 MST 2019
+# IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
+# Start of session at: Tue Nov 10 12:57:48 2020
+# Process ID: 3632
+# Current directory: C:/Users/fanqi/Documents/GitHub/Cache/Project/soc_axi_lite_loongson/run_vivado/mycpu_prj1/mycpu.runs/clk_pll_synth_1
+# Command line: vivado.exe -log clk_pll.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source clk_pll.tcl
+# Log file: C:/Users/fanqi/Documents/GitHub/Cache/Project/soc_axi_lite_loongson/run_vivado/mycpu_prj1/mycpu.runs/clk_pll_synth_1/clk_pll.vds
+# Journal file: C:/Users/fanqi/Documents/GitHub/Cache/Project/soc_axi_lite_loongson/run_vivado/mycpu_prj1/mycpu.runs/clk_pll_synth_1\vivado.jou
+#-----------------------------------------------------------
+source clk_pll.tcl -notrace
+Command: synth_design -top clk_pll -part xc7a200tfbg676-2 -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a200t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a200t'
+INFO: [Device 21-403] Loading part xc7a200tfbg676-2
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 20672 
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1013.316 ; gain = 235.340
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'clk_pll' [c:/Users/fanqi/Documents/GitHub/Cache/Project/soc_axi_lite_loongson/rtl/xilinx_ip/clk_pll/clk_pll.v:71]
+INFO: [Synth 8-6157] synthesizing module 'clk_pll_clk_wiz' [c:/Users/fanqi/Documents/GitHub/Cache/Project/soc_axi_lite_loongson/rtl/xilinx_ip/clk_pll/clk_pll_clk_wiz.v:69]
+INFO: [Synth 8-6157] synthesizing module 'IBUF' [C:/Xilinx/Vivado/2019.2/scripts/rt/data/unisim_comp.v:32937]
+	Parameter CAPACITANCE bound to: DONT_CARE - type: string 
+	Parameter IBUF_DELAY_VALUE bound to: 0 - type: string 
+	Parameter IBUF_LOW_PWR bound to: TRUE - type: string 
+	Parameter IFD_DELAY_VALUE bound to: AUTO - type: string 
+	Parameter IOSTANDARD bound to: DEFAULT - type: string 
+INFO: [Synth 8-6155] done synthesizing module 'IBUF' (1#1) [C:/Xilinx/Vivado/2019.2/scripts/rt/data/unisim_comp.v:32937]
+INFO: [Synth 8-6157] synthesizing module 'PLLE2_ADV' [C:/Xilinx/Vivado/2019.2/scripts/rt/data/unisim_comp.v:61416]
+	Parameter BANDWIDTH bound to: OPTIMIZED - type: string 
+	Parameter CLKFBOUT_MULT bound to: 9 - type: integer 
+	Parameter CLKFBOUT_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKIN1_PERIOD bound to: 10.000000 - type: double 
+	Parameter CLKIN2_PERIOD bound to: 0.000000 - type: double 
+	Parameter CLKOUT0_DIVIDE bound to: 18 - type: integer 
+	Parameter CLKOUT0_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT0_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKOUT1_DIVIDE bound to: 9 - type: integer 
+	Parameter CLKOUT1_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT1_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKOUT2_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT2_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT2_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKOUT3_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT3_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT3_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKOUT4_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT4_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT4_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKOUT5_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT5_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT5_PHASE bound to: 0.000000 - type: double 
+	Parameter COMPENSATION bound to: ZHOLD - type: string 
+	Parameter DIVCLK_DIVIDE bound to: 1 - type: integer 
+	Parameter IS_CLKINSEL_INVERTED bound to: 1'b0 
+	Parameter IS_PWRDWN_INVERTED bound to: 1'b0 
+	Parameter IS_RST_INVERTED bound to: 1'b0 
+	Parameter REF_JITTER1 bound to: 0.010000 - type: double 
+	Parameter REF_JITTER2 bound to: 0.010000 - type: double 
+	Parameter STARTUP_WAIT bound to: FALSE - type: string 
+INFO: [Synth 8-6155] done synthesizing module 'PLLE2_ADV' (2#1) [C:/Xilinx/Vivado/2019.2/scripts/rt/data/unisim_comp.v:61416]
+INFO: [Synth 8-6157] synthesizing module 'BUFG' [C:/Xilinx/Vivado/2019.2/scripts/rt/data/unisim_comp.v:1075]
+INFO: [Synth 8-6155] done synthesizing module 'BUFG' (3#1) [C:/Xilinx/Vivado/2019.2/scripts/rt/data/unisim_comp.v:1075]
+INFO: [Synth 8-6155] done synthesizing module 'clk_pll_clk_wiz' (4#1) [c:/Users/fanqi/Documents/GitHub/Cache/Project/soc_axi_lite_loongson/rtl/xilinx_ip/clk_pll/clk_pll_clk_wiz.v:69]
+INFO: [Synth 8-6155] done synthesizing module 'clk_pll' (5#1) [c:/Users/fanqi/Documents/GitHub/Cache/Project/soc_axi_lite_loongson/rtl/xilinx_ip/clk_pll/clk_pll.v:71]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1089.227 ; gain = 311.250
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1089.227 ; gain = 311.250
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1089.227 ; gain = 311.250
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1089.227 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 1 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [c:/Users/fanqi/Documents/GitHub/Cache/Project/soc_axi_lite_loongson/rtl/xilinx_ip/clk_pll/clk_pll_ooc.xdc] for cell 'inst'
+Finished Parsing XDC File [c:/Users/fanqi/Documents/GitHub/Cache/Project/soc_axi_lite_loongson/rtl/xilinx_ip/clk_pll/clk_pll_ooc.xdc] for cell 'inst'
+Parsing XDC File [c:/Users/fanqi/Documents/GitHub/Cache/Project/soc_axi_lite_loongson/rtl/xilinx_ip/clk_pll/clk_pll_board.xdc] for cell 'inst'
+Finished Parsing XDC File [c:/Users/fanqi/Documents/GitHub/Cache/Project/soc_axi_lite_loongson/rtl/xilinx_ip/clk_pll/clk_pll_board.xdc] for cell 'inst'
+Parsing XDC File [c:/Users/fanqi/Documents/GitHub/Cache/Project/soc_axi_lite_loongson/rtl/xilinx_ip/clk_pll/clk_pll.xdc] for cell 'inst'
+Finished Parsing XDC File [c:/Users/fanqi/Documents/GitHub/Cache/Project/soc_axi_lite_loongson/rtl/xilinx_ip/clk_pll/clk_pll.xdc] for cell 'inst'
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [c:/Users/fanqi/Documents/GitHub/Cache/Project/soc_axi_lite_loongson/rtl/xilinx_ip/clk_pll/clk_pll.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/clk_pll_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/clk_pll_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+INFO: [Timing 38-2] Deriving generated clocks
+Parsing XDC File [C:/Users/fanqi/Documents/GitHub/Cache/Project/soc_axi_lite_loongson/run_vivado/mycpu_prj1/mycpu.runs/clk_pll_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [C:/Users/fanqi/Documents/GitHub/Cache/Project/soc_axi_lite_loongson/run_vivado/mycpu_prj1/mycpu.runs/clk_pll_synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1102.117 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.017 . Memory (MB): peak = 1102.121 ; gain = 0.004
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1102.121 ; gain = 324.145
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a200tfbg676-2
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1102.121 ; gain = 324.145
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property DONT_TOUCH = true for inst. (constraint file  C:/Users/fanqi/Documents/GitHub/Cache/Project/soc_axi_lite_loongson/run_vivado/mycpu_prj1/mycpu.runs/clk_pll_synth_1/dont_touch.xdc, line 9).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1102.121 ; gain = 324.145
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1102.121 ; gain = 324.145
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 740 (col length:100)
+BRAMs: 730 (col length: RAMB18 100 RAMB36 50)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------

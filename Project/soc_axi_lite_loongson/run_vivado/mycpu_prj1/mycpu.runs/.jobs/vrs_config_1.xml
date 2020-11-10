@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<Runs Version="1" Minor="0">
+	<Run Id="clk_pll_synth_1" LaunchDir="C:/Users/fanqi/Documents/GitHub/Cache/Project/soc_axi_lite_loongson/run_vivado/mycpu_prj1/mycpu.runs/clk_pll_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="axi_ram_synth_1" LaunchDir="C:/Users/fanqi/Documents/GitHub/Cache/Project/soc_axi_lite_loongson/run_vivado/mycpu_prj1/mycpu.runs/axi_ram_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="axi_crossbar_1x2_synth_1" LaunchDir="C:/Users/fanqi/Documents/GitHub/Cache/Project/soc_axi_lite_loongson/run_vivado/mycpu_prj1/mycpu.runs/axi_crossbar_1x2_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="axi_clock_converter_synth_1" LaunchDir="C:/Users/fanqi/Documents/GitHub/Cache/Project/soc_axi_lite_loongson/run_vivado/mycpu_prj1/mycpu.runs/axi_clock_converter_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="unsigned_mult_synth_1" LaunchDir="C:/Users/fanqi/Documents/GitHub/Cache/Project/soc_axi_lite_loongson/run_vivado/mycpu_prj1/mycpu.runs/unsigned_mult_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="signed_mult_synth_1" LaunchDir="C:/Users/fanqi/Documents/GitHub/Cache/Project/soc_axi_lite_loongson/run_vivado/mycpu_prj1/mycpu.runs/signed_mult_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Parameters>
+		<Parameter Name="runs.monitorLSFJobs" Val="true" Type="bool"/>
+		<Parameter Name="runs.enableClusterConf" Val="true" Type="bool"/>
+	</Parameters>
+</Runs>
+
