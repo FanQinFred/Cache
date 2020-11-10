@@ -30,26 +30,47 @@
 `define  MEM_ADDR_LEN    (`TAG_ADDR_LEN + `SET_ADDR_LEN)                              // 访问SRAM的地址长度 此处为{30位，00}
 `define  SET_SIZE        (1 << `SET_ADDR_LEN)                                         // 组的数量
 
+    // input wire clk, rst,
+    // //mips core
+    // input         cpu_inst_req     ,
+    // input         cpu_inst_wr      ,
+    // input  [1 :0] cpu_inst_size    ,
+    // input  [31:0] cpu_inst_addr    ,
+    // input  [31:0] cpu_inst_wdata   ,
+    // output [31:0] cpu_inst_rdata   ,
+    // output        cpu_inst_addr_ok ,
+    // output        cpu_inst_data_ok ,
+
+    // //axi interface
+    // output         cache_inst_req     ,
+    // output         cache_inst_wr      ,
+    // output  [1 :0] cache_inst_size    ,
+    // output  [31:0] cache_inst_addr    ,
+    // output  [31:0] cache_inst_wdata   ,
+    // input   [31:0] cache_inst_rdata   ,
+    // input          cache_inst_addr_ok ,
+    // input          cache_inst_data_ok 
+
 module i_cache (
     input wire clk, rst,
     //mips core
-    input          cpu_data_req       ,
-    input          cpu_data_wr        ,
-    input   [1 :0] cpu_data_size      ,
-    input   [31:0] cpu_data_addr      ,
-    input   [31:0] cpu_data_wdata     ,
-    output  [31:0] cpu_data_rdata     ,
-    output         cpu_data_addr_ok   ,
-    output         cpu_data_data_ok   ,
+    input          cpu_inst_req       ,
+    input          cpu_inst_wr        ,
+    input   [1 :0] cpu_inst_size      ,
+    input   [31:0] cpu_inst_addr      ,
+    input   [31:0] cpu_inst_wdata     ,
+    output  [31:0] cpu_inst_rdata     ,
+    output         cpu_inst_addr_ok   ,
+    output         cpu_inst_data_ok   ,
     //axi interface
-    output         cache_data_req     ,
-    output         cache_data_wr      ,
-    output  [1 :0] cache_data_size    ,
-    output  [31:0] cache_data_addr    ,
-    output  [31:0] cache_data_wdata   ,
-    input   [31:0] cache_data_rdata   ,
-    input          cache_data_addr_ok ,
-    input          cache_data_data_ok
+    output         cache_inst_req     ,
+    output         cache_inst_wr      ,
+    output  [1 :0] cache_inst_size    ,
+    output  [31:0] cache_inst_addr    ,
+    output  [31:0] cache_inst_wdata   ,
+    input   [31:0] cache_inst_rdata   ,
+    input          cache_inst_addr_ok ,
+    input          cache_inst_data_ok
 );
 
     //Cache配置
@@ -99,9 +120,9 @@ module i_cache (
     wire    [INDEX_WIDTH-1:0]                           index;
     wire    [TAG_WIDTH-1:0]                             tag;
 
-    assign  offset = cpu_data_addr[OFFSET_WIDTH - 1 : 0];
-    assign  index  = cpu_data_addr[INDEX_WIDTH + OFFSET_WIDTH - 1 : OFFSET_WIDTH];  //11:2
-    assign  tag    = cpu_data_addr[31 : INDEX_WIDTH + OFFSET_WIDTH];
+    assign  offset = cpu_inst_addr[OFFSET_WIDTH - 1 : 0];
+    assign  index  = cpu_inst_addr[INDEX_WIDTH + OFFSET_WIDTH - 1 : OFFSET_WIDTH];  //11:2
+    assign  tag    = cpu_inst_addr[31 : INDEX_WIDTH + OFFSET_WIDTH];
 
     //访问Cache line
     wire                                                c_valid;
@@ -153,7 +174,7 @@ module i_cache (
     wire read;
     wire write;
     assign read  = ~write;
-    assign write = cpu_data_wr;
+    assign write = cpu_inst_wr;
 
     //读内存控制开始
     //变量read_req, addr_rcv, read_finish用于构造类sram信号。
@@ -161,11 +182,11 @@ module i_cache (
     wire read_finish;    //数据接收成功(data_ok)，即读请求结束
     always @(posedge clk) begin
         addr_rcv <= rst ? 1'b0 :
-                    //read & cache_data_req & cache_data_addr_ok ? 1'b1 :
-                    dram_wr_req & cache_data_addr_ok ? 1'b1 :
+                    //read & cache_inst_req & cache_inst_addr_ok ? 1'b1 :
+                    dram_wr_req & cache_inst_addr_ok ? 1'b1 :
                     read_finish ? 1'b0 : addr_rcv;
     end
-    assign read_finish = read & cache_data_data_ok;
+    assign read_finish = read & cache_inst_data_ok;
     //读内存控制结束
 
     //写内存控制开始
@@ -173,33 +194,33 @@ module i_cache (
     wire write_finish;   
     always @(posedge clk) begin
         waddr_rcv <= rst ? 1'b0 :
-                     //write & cache_data_req & cache_data_addr_ok ? 1'b1 :
-                     dram_wr_req & cache_data_addr_ok ? 1'b1 :
+                     //write & cache_inst_req & cache_inst_addr_ok ? 1'b1 :
+                     dram_wr_req & cache_inst_addr_ok ? 1'b1 :
                      write_finish ? 1'b0 : waddr_rcv;
     end
-    assign write_finish = write & cache_data_data_ok;
+    assign write_finish = write & cache_inst_data_ok;
     //写内存控制结束
 
     //output to mips core
-    assign cpu_data_rdata   = hit ? c_block : cache_data_rdata;
-    assign cpu_data_addr_ok = cpu_data_req & hit;//hit;//read & cpu_data_req & hit | cache_data_req & cache_data_addr_ok;
-    assign cpu_data_data_ok = cpu_data_req & hit;//read & cpu_data_req & hit | cache_data_data_ok;
+    assign cpu_inst_rdata   = hit ? c_block : cache_inst_rdata;
+    assign cpu_inst_addr_ok = cpu_inst_req & hit;//hit;//read & cpu_inst_req & hit | cache_inst_req & cache_inst_addr_ok;
+    assign cpu_inst_data_ok = cpu_inst_req & hit;//read & cpu_inst_req & hit | cache_inst_data_ok;
  
     wire [31:0] dram_wr_addr,dram_rd_addr;
     assign  dram_wr_addr              =   {c_tag,index,2'b00};
-    assign  dram_rd_addr              =   cpu_data_addr;
+    assign  dram_rd_addr              =   cpu_inst_addr;
     //output to axi interface
-    assign cache_data_req   = (dram_rd_req ) | (dram_wr_req);//dram_rd_req & ~addr_rcv | dram_wr_req & ~waddr_rcv;
-    assign cache_data_wr    = dram_wr_req ? 1 : 0;;
-    assign cache_data_size  = 2'b10;        //    wire    dram_wr_req,dram_rd_req;
-    assign cache_data_addr  = dram_wr_req ? dram_wr_addr : dram_rd_req ?  dram_rd_addr : 32'b0;//cpu_data_addr;
-    assign cache_data_wdata = c_block;//cpu_data_wdata;
+    assign cache_inst_req   = (dram_rd_req ) | (dram_wr_req);//dram_rd_req & ~addr_rcv | dram_wr_req & ~waddr_rcv;
+    assign cache_inst_wr    = dram_wr_req ? 1 : 0;;
+    assign cache_inst_size  = 2'b10;        //    wire    dram_wr_req,dram_rd_req;
+    assign cache_inst_addr  = dram_wr_req ? dram_wr_addr : dram_rd_req ?  dram_rd_addr : 32'b0;//cpu_inst_addr;
+    assign cache_inst_wdata = c_block;//cpu_inst_wdata;
 
     // data_cache state machine
     // 仅用于控制读与写请求信号
     wire   dram_wr_val,dram_rd_val;
-    assign dram_wr_val = dram_wr_req ? cache_data_data_ok : 0;
-    assign dram_rd_val = dram_rd_req ? cache_data_data_ok : 0; 
+    assign dram_wr_val = dram_wr_req ? cache_inst_data_ok : 0;
+    assign dram_rd_val = dram_rd_req ? cache_inst_data_ok : 0; 
     // dram write/read request
     // 通过state控制读与写请求信号
     wire    dram_wr_req,dram_rd_req;
@@ -211,9 +232,9 @@ module i_cache (
         end
         else begin
             case(state)
-                CPU_EXEC:if( miss & dirty & cpu_data_req)          // dirty block write back to dram
+                CPU_EXEC:if( miss & dirty & cpu_inst_req)          // dirty block write back to dram
                             state   <=  WR_DRAM;
-                        else if( miss & cpu_data_req)              // request new block from dram
+                        else if( miss & cpu_inst_req)              // request new block from dram
                             state   <=  RD_DRAM;
                         else
                             state   <=  CPU_EXEC;
@@ -234,12 +255,12 @@ module i_cache (
     //保存地址中的tag, index，防止addr发生改变
     reg [TAG_WIDTH-1:0]   tag_save;
     reg [INDEX_WIDTH-1:0] index_save;
-    //有cpu_data_req才保存
+    //有cpu_inst_req才保存
     always @(posedge clk) begin
         tag_save   <= rst ? 0 :
-                      cpu_data_req ? tag : tag_save;
+                      cpu_inst_req ? tag : tag_save;
         index_save <= rst ? 0 :
-                      cpu_data_req ? index : index_save;
+                      cpu_inst_req ? index : index_save;
     end
 
     wire [31:0] write_cache_data;
@@ -278,25 +299,25 @@ module i_cache (
                         cache_valid_way_0[index_save]  <=  1'b1;
                         cache_dirty_way_0[index_save]  <=  1'b0;
                         cache_tags_way_0 [index_save]  <=  tag_save;
-                        cache_block_way_0[index_save]  <=  cache_data_rdata; //写入Cache line
+                        cache_block_way_0[index_save]  <=  cache_inst_rdata; //写入Cache line
                     end
                     2'd1: begin
                         cache_valid_way_1[index_save]  <=  1'b1;
                         cache_dirty_way_1[index_save]  <=  1'b0;
                         cache_tags_way_1 [index_save]  <=  tag_save;
-                        cache_block_way_1[index_save]  <=  cache_data_rdata; //写入Cache line
+                        cache_block_way_1[index_save]  <=  cache_inst_rdata; //写入Cache line
                     end
                     2'd2: begin
                         cache_valid_way_2[index_save]  <=  1'b1;
                         cache_dirty_way_2[index_save]  <=  1'b0;
                         cache_tags_way_2 [index_save]  <=  tag_save;
-                        cache_block_way_2[index_save]  <=  cache_data_rdata; //写入Cache line
+                        cache_block_way_2[index_save]  <=  cache_inst_rdata; //写入Cache line
                     end
                     2'd3: begin
                         cache_valid_way_3[index_save]  <=  1'b1;
                         cache_dirty_way_3[index_save]  <=  1'b0;
                         cache_tags_way_3 [index_save]  <=  tag_save;
-                        cache_block_way_3[index_save]  <=  cache_data_rdata; //写入Cache line
+                        cache_block_way_3[index_save]  <=  cache_inst_rdata; //写入Cache line
                     end
                     default:;
                 endcase
@@ -388,16 +409,16 @@ module i_cache (
     end
 
     //根据地址低两位和size，生成写掩码（针对sb，sh等不是写完整一个字的指令），4位对应1个字（4字节）中每个字的写使能
-    assign write_mask = cpu_data_size==2'b00 ?
-                            (cpu_data_addr[1] ? (cpu_data_addr[0] ? 4'b1000 : 4'b0100):  // 1个字节
-                                                (cpu_data_addr[0] ? 4'b0010 : 4'b0001)) :
-                            (cpu_data_size==2'b01 ? (cpu_data_addr[1] ? 4'b1100 : 4'b0011) : 4'b1111);  //2个字节   或   全字
-                            //cpu_data_size!=2'b00与2'b01时，write_mask为4'b1111
+    assign write_mask = cpu_inst_size==2'b00 ?
+                            (cpu_inst_addr[1] ? (cpu_inst_addr[0] ? 4'b1000 : 4'b0100):  // 1个字节
+                                                (cpu_inst_addr[0] ? 4'b0010 : 4'b0001)) :
+                            (cpu_inst_size==2'b01 ? (cpu_inst_addr[1] ? 4'b1100 : 4'b0011) : 4'b1111);  //2个字节   或   全字
+                            //cpu_inst_size!=2'b00与2'b01时，write_mask为4'b1111
 
     //掩码的使用：位为1的代表需要更新的。
     //位拓展：{8{1'b1}} -> 8'b11111111
     //new_data = old_data & ~mask | write_data & mask
     assign write_cache_data = c_block & ~{{8{write_mask[3]}}, {8{write_mask[2]}}, {8{write_mask[1]}}, {8{write_mask[0]}}} | 
-                              cpu_data_wdata & {{8{write_mask[3]}}, {8{write_mask[2]}}, {8{write_mask[1]}}, {8{write_mask[0]}}};
+                              cpu_inst_wdata & {{8{write_mask[3]}}, {8{write_mask[2]}}, {8{write_mask[1]}}, {8{write_mask[0]}}};
 
 endmodule
