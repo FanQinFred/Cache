@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="axi_clock_converter_synth_1" LaunchPart="xc7a200tfbg676-2" LaunchTime="1604984265">
   <File Type="PA-TCL" Name="axi_clock_converter.tcl"/>
-  <File Type="RDS-PROPCONSTRS" Name="axi_clock_converter_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="axi_clock_converter_reports.tcl"/>
   <File Type="RDS-RDS" Name="axi_clock_converter.vds"/>
   <File Type="RDS-UTIL" Name="axi_clock_converter_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="axi_clock_converter_utilization_synth.pb"/>
   <File Type="RDS-DCP" Name="axi_clock_converter.dcp"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="axi_clock_converter_timing_summary_synth.rpt"/>
-  <File Type="VDS-TIMING-PB" Name="axi_clock_converter_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="BlockSrcs" RelSrcDir="$PSRCDIR/axi_clock_converter">
     <File Path="$PPRDIR/../../rtl/xilinx_ip/axi_clock_converter/axi_clock_converter.xci">
       <FileInfo>
@@ -42,9 +39,7 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019">
-      <Desc>Vivado Synthesis Defaults</Desc>
-    </StratHandle>
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019"/>
     <Step Id="synth_design"/>
   </Strategy>
 </GenRun>
