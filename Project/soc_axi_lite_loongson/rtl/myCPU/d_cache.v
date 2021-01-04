@@ -138,20 +138,20 @@ module d_cache (
                            (way_hold_max_age[index]==2) ? cache_tags_way_2[index] : (way_hold_max_age[index]==3) ? cache_tags_way_3[index] : 0;
 
     // 获得cache对应的data
-    assign c_block                      =  hit && hit_way==0 ? cache_block_way_0[index] :
-                                           hit && hit_way==1 ? cache_block_way_1[index] :
-                                           hit && hit_way==2 ? cache_block_way_2[index] :
-                                           hit && hit_way==3 ? cache_block_way_3[index] : 0;
+    assign c_block       = hit && hit_way==0 ? cache_block_way_0[index] :
+                           hit && hit_way==1 ? cache_block_way_1[index] :
+                           hit && hit_way==2 ? cache_block_way_2[index] :
+                           hit && hit_way==3 ? cache_block_way_3[index] : 0;
 
     //判断是否命中
-    wire hit;
-    wire miss;
+    wire   hit;
+    wire   miss;
     assign hit   = c_valid;
     assign miss  = ~hit;
 
     //读或写
-    wire read;
-    wire write;
+    wire   read;
+    wire   write;
     assign read  = ~write;
     assign write = cpu_data_wr;
 
@@ -303,18 +303,24 @@ module d_cache (
                 
                 // 找到年龄最大的way号
                 if((0!=way_hold_max_age[index_save]?way_age_way_0[index_save]+1:0)>=(1!=way_hold_max_age[index_save]?way_age_way_1[index_save]+1:0)&&
-                (0!=way_hold_max_age[index_save]?way_age_way_0[index_save]+1:0)>=(2!=way_hold_max_age[index_save]?way_age_way_2[index_save]+1:0)&&
-                (0!=way_hold_max_age[index_save]?way_age_way_0[index_save]+1:0)>=(3!=way_hold_max_age[index_save]?way_age_way_3[index_save]+1:0)) begin
+                            (0!=way_hold_max_age[index_save]?way_age_way_0[index_save]+1:0)>=(2!=way_hold_max_age[index_save]?way_age_way_2[index_save]+1:0)&&
+                            (0!=way_hold_max_age[index_save]?way_age_way_0[index_save]+1:0)>=(3!=way_hold_max_age[index_save]?way_age_way_3[index_save]+1:0)) begin
                     way_hold_max_age[index_save] <= 0;
-                end else if((1!=way_hold_max_age[index_save]?way_age_way_1[index_save]+1:0)>=(0!=way_hold_max_age[index_save]?way_age_way_0[index_save]+1:0)&&
+                end 
+                else 
+                if((1!=way_hold_max_age[index_save]?way_age_way_1[index_save]+1:0)>=(0!=way_hold_max_age[index_save]?way_age_way_0[index_save]+1:0)&&
                             (1!=way_hold_max_age[index_save]?way_age_way_1[index_save]+1:0)>=(2!=way_hold_max_age[index_save]?way_age_way_2[index_save]+1:0)&&
                             (1!=way_hold_max_age[index_save]?way_age_way_1[index_save]+1:0)>=(3!=way_hold_max_age[index_save]?way_age_way_3[index_save]+1:0)) begin
                     way_hold_max_age[index_save] <= 1;
-                end else if((2!=way_hold_max_age[index_save]?way_age_way_2[index_save]+1:0)>=(0!=way_hold_max_age[index_save]?way_age_way_0[index_save]+1:0)&&
+                end 
+                else 
+                if((2!=way_hold_max_age[index_save]?way_age_way_2[index_save]+1:0)>=(0!=way_hold_max_age[index_save]?way_age_way_0[index_save]+1:0)&&
                             (2!=way_hold_max_age[index_save]?way_age_way_2[index_save]+1:0)>=(1!=way_hold_max_age[index_save]?way_age_way_1[index_save]+1:0)&&
                             (2!=way_hold_max_age[index_save]?way_age_way_2[index_save]+1:0)>=(3!=way_hold_max_age[index_save]?way_age_way_3[index_save]+1:0)) begin
                     way_hold_max_age[index_save] <= 2;
-                end else if((3!=way_hold_max_age[index_save]?way_age_way_3[index_save]+1:0)>=(0!=way_hold_max_age[index_save]?way_age_way_0[index_save]+1:0)&&
+                end 
+                else 
+                if((3!=way_hold_max_age[index_save]?way_age_way_3[index_save]+1:0)>=(0!=way_hold_max_age[index_save]?way_age_way_0[index_save]+1:0)&&
                             (3!=way_hold_max_age[index_save]?way_age_way_3[index_save]+1:0)>=(1!=way_hold_max_age[index_save]?way_age_way_1[index_save]+1:0)&&
                             (3!=way_hold_max_age[index_save]?way_age_way_3[index_save]+1:0)>=(2!=way_hold_max_age[index_save]?way_age_way_2[index_save]+1:0)) begin
                     way_hold_max_age[index_save] <= 3;
@@ -360,19 +366,25 @@ module d_cache (
                     default:;
                 endcase
                 // 找到年龄最大的way号
-                if((0!=hit_way?way_age_way_0[index]+1:0)>=(1!=hit_way?way_age_way_1[index]+1:0)&&
-                (0!=hit_way?way_age_way_0[index]+1:0)>=(2!=hit_way?way_age_way_2[index]+1:0)&&
-                (0!=hit_way?way_age_way_0[index]+1:0)>=(3!=hit_way?way_age_way_3[index]+1:0)) begin
+                if((0!=hit_way ? way_age_way_0[index]+1 : 0)>=(1!=hit_way?way_age_way_1[index]+1:0)&&
+                            (0!=hit_way?way_age_way_0[index]+1:0)>=(2!=hit_way?way_age_way_2[index]+1:0)&&
+                            (0!=hit_way?way_age_way_0[index]+1:0)>=(3!=hit_way?way_age_way_3[index]+1:0)) begin
                     way_hold_max_age[index] <= 0;
-                end else if((1!=hit_way?way_age_way_1[index]+1:0)>=(0!=hit_way?way_age_way_0[index]+1:0)&&
+                end 
+                else 
+                if((1!=hit_way ? way_age_way_1[index]+1 : 0)>=(0!=hit_way?way_age_way_0[index]+1:0)&&
                             (1!=hit_way?way_age_way_1[index]+1:0)>=(2!=hit_way?way_age_way_2[index]+1:0)&&
                             (1!=hit_way?way_age_way_1[index]+1:0)>=(3!=hit_way?way_age_way_3[index]+1:0)) begin
                     way_hold_max_age[index] <= 1;
-                end else if((2!=hit_way?way_age_way_2[index]+1:0)>=(0!=hit_way?way_age_way_0[index]+1:0)&&
+                end 
+                else 
+                if((2!=hit_way ? way_age_way_2[index]+1 : 0)>=(0!=hit_way?way_age_way_0[index]+1:0)&&
                             (2!=hit_way?way_age_way_2[index]+1:0)>=(1!=hit_way?way_age_way_1[index]+1:0)&&
                             (2!=hit_way?way_age_way_2[index]+1:0)>=(3!=hit_way?way_age_way_3[index]+1:0)) begin
                     way_hold_max_age[index] <= 2;
-                end else if((3!=hit_way?way_age_way_3[index]+1:0)>=(0!=hit_way?way_age_way_0[index]+1:0)&&
+                end 
+                else 
+                if((3!=hit_way ? way_age_way_3[index]+1 : 0)>=(0!=hit_way?way_age_way_0[index]+1:0)&&
                             (3!=hit_way?way_age_way_3[index]+1:0)>=(1!=hit_way?way_age_way_1[index]+1:0)&&
                             (3!=hit_way?way_age_way_3[index]+1:0)>=(2!=hit_way?way_age_way_2[index]+1:0)) begin
                     way_hold_max_age[index] <= 3;

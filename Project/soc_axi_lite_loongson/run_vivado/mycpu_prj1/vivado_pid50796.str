@@ -1,0 +1,330 @@
+/*
+
+Xilinx Vivado v2019.2 (64-bit) [Major: 2019, Minor: 2]
+SW Build: 2708876 on Wed Nov  6 21:40:23 MST 2019
+IP Build: 2700528 on Thu Nov  7 00:09:20 MST 2019
+
+Process ID (PID): 50796
+License: Customer
+
+Current time: 	Sun Jan 03 15:15:11 CST 2021
+Time zone: 	China Standard Time (Asia/Shanghai)
+
+OS: Windows 10
+OS Version: 10.0
+OS Architecture: amd64
+Available processors (cores): 12
+
+Screen size: 1920x1080
+Screen resolution (DPI): 125
+Available screens: 1
+Available disk space: 38 GB
+Default font: family=Dialog,name=Dialog,style=plain,size=15
+
+Java version: 	9.0.4 64-bit
+Java home: 	C:/Xilinx/Vivado/2019.2/tps/win64/jre9.0.4
+Java executable location: 	C:/Xilinx/Vivado/2019.2/tps/win64/jre9.0.4/bin/java.exe
+Java initial memory (-Xms): 	128 MB
+Java maximum memory (-Xmx):	 3 GB
+
+
+User name: 	fanqi
+User home directory: C:/Users/fanqi
+User working directory: C:/Users/fanqi/Documents/GitHub/Cache/Project/soc_axi_lite_loongson/run_vivado/mycpu_prj1
+User country: 	CN
+User language: 	zh
+User locale: 	zh_CN
+
+RDI_BASEROOT: C:/Xilinx/Vivado
+HDI_APPROOT: C:/Xilinx/Vivado/2019.2
+RDI_DATADIR: C:/Xilinx/Vivado/2019.2/data
+RDI_BINDIR: C:/Xilinx/Vivado/2019.2/bin
+
+Vivado preferences file location: C:/Users/fanqi/AppData/Roaming/Xilinx/Vivado/2019.2/vivado.xml
+Vivado preferences directory: C:/Users/fanqi/AppData/Roaming/Xilinx/Vivado/2019.2/
+Vivado layouts directory: C:/Users/fanqi/AppData/Roaming/Xilinx/Vivado/2019.2/layouts
+PlanAhead jar file location: 	C:/Xilinx/Vivado/2019.2/lib/classes/planAhead.jar
+Vivado log file location: 	C:/Users/fanqi/Documents/GitHub/Cache/Project/soc_axi_lite_loongson/run_vivado/mycpu_prj1/vivado.log
+Vivado journal file location: 	C:/Users/fanqi/Documents/GitHub/Cache/Project/soc_axi_lite_loongson/run_vivado/mycpu_prj1/vivado.jou
+Engine tmp dir: 	C:/Users/fanqi/Documents/GitHub/Cache/Project/soc_axi_lite_loongson/run_vivado/mycpu_prj1/.Xil/Vivado-50796-ÇØ·²µÄPC
+
+Xilinx Environment Variables
+----------------------------
+XILINX: C:/Xilinx/Vivado/2019.2/ids_lite/ISE
+XILINX_DSP: C:/Xilinx/Vivado/2019.2/ids_lite/ISE
+XILINX_PLANAHEAD: C:/Xilinx/Vivado/2019.2
+XILINX_VIVADO: C:/Xilinx/Vivado/2019.2
+XILINX_VIVADO_HLS: C:/Xilinx/Vivado/2019.2
+
+
+GUI allocated memory:	154 MB
+GUI max memory:		3,072 MB
+Engine allocated memory: 744 MB
+
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+
+*/
+
+// TclEventType: START_GUI
+// Tcl Message: start_gui 
+// TclEventType: PROJECT_OPEN_DIALOG
+// [GUI Memory]: 110 MB (+112619kb) [00:00:05]
+// [Engine Memory]: 612 MB (+490662kb) [00:00:05]
+// bB (cr):  Open Project : addNotify
+// Opening Vivado Project: C:\Users\fanqi\Documents\GitHub\Cache\Project\soc_axi_lite_loongson\run_vivado\mycpu_prj1\mycpu.xpr. Version: Vivado v2019.2 
+// Tcl Message: open_project C:/Users/fanqi/Documents/GitHub/Cache/Project/soc_axi_lite_loongson/run_vivado/mycpu_prj1/mycpu.xpr 
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// Tcl Message: INFO: [ProjectBase 1-489] The host OS only allows 260 characters in a normal path. The project is stored in a path with more than 80 characters. If you experience issues with IP, Block Designs, or files not being found, please consider moving the project to a location with a shorter path. Alternately consider using the OS subst command to map part of the path to a drive letter. Current project path is 'C:/Users/fanqi/Documents/GitHub/Cache/Project/soc_axi_lite_loongson/run_vivado/mycpu_prj1' 
+// TclEventType: MSGMGR_MOVEMSG
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_CURRENT
+// TclEventType: PROJECT_DASHBOARD_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 805 MB. GUI used memory: 50 MB. Current time: 1/3/21, 3:15:13 PM CST
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: PROJECT_NEW
+// [Engine Memory]: 835 MB (+201498kb) [00:00:11]
+// [Engine Memory]: 879 MB (+1949kb) [00:00:12]
+// WARNING: HEventQueue.dispatchEvent() is taking  2977 ms.
+// Tcl Message: open_project C:/Users/fanqi/Documents/GitHub/Cache/Project/soc_axi_lite_loongson/run_vivado/mycpu_prj1/mycpu.xpr 
+// Tcl Message: INFO: [ProjectBase 1-489] The host OS only allows 260 characters in a normal path. The project is stored in a path with more than 80 characters. If you experience issues with IP, Block Designs, or files not being found, please consider moving the project to a location with a shorter path. Alternately consider using the OS subst command to map part of the path to a drive letter. Current project path is 'C:/Users/fanqi/Documents/GitHub/Cache/Project/soc_axi_lite_loongson/run_vivado/mycpu_prj1' 
+// Tcl Message: Scanning sources... Finished scanning sources 
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1704] No user IP repositories specified INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2019.2/data/ip'. 
+// Tcl Message: open_project: Time (s): cpu = 00:00:13 ; elapsed = 00:00:08 . Memory (MB): peak = 930.402 ; gain = 268.031 
+// Project name: mycpu; location: C:/Users/fanqi/Documents/GitHub/Cache/Project/soc_axi_lite_loongson/run_vivado/mycpu_prj1; part: xc7a200tfbg676-2
+// [GUI Memory]: 118 MB (+2644kb) [00:00:15]
+dismissDialog("Open Project"); // bB (cr)
+// Tcl Message: update_compile_order -fileset sources_1 
+// Elapsed time: 149 seconds
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_axi_lite_top (soc_axi_lite_top.v)]", 2); // B (F, cr)
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_axi_lite_top (soc_axi_lite_top.v), u_cpu : mycpu_top (mycpu_top.v)]", 3); // B (F, cr)
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_axi_lite_top (soc_axi_lite_top.v), u_cpu : mycpu_top (mycpu_top.v), cache : cache (cache.v)]", 7); // B (F, cr)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_axi_lite_top (soc_axi_lite_top.v), u_cpu : mycpu_top (mycpu_top.v), cache : cache (cache.v), i_cache : i_cache (i_cache.v)]", 8, false); // B (F, cr)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_axi_lite_top (soc_axi_lite_top.v), u_cpu : mycpu_top (mycpu_top.v), cache : cache (cache.v), i_cache : i_cache (i_cache.v)]", 8, false, false, false, false, false, true); // B (F, cr) - Double Click
+// [Engine Memory]: 929 MB (+6485kb) [00:02:53]
+// HMemoryUtils.trashcanNow. Engine heap size: 929 MB. GUI used memory: 62 MB. Current time: 1/3/21, 3:17:58 PM CST
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_axi_lite_top (soc_axi_lite_top.v), u_cpu : mycpu_top (mycpu_top.v), cache : cache (cache.v)]", 7); // B (F, cr)
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_axi_lite_top (soc_axi_lite_top.v), u_cpu : mycpu_top (mycpu_top.v), mips_core : mips_core (mips_core.v)]", 4); // B (F, cr)
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_axi_lite_top (soc_axi_lite_top.v), u_cpu : mycpu_top (mycpu_top.v), mips_core : mips_core (mips_core.v), datapath : datapath (datapath.v)]", 5); // B (F, cr)
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_axi_lite_top (soc_axi_lite_top.v), u_cpu : mycpu_top (mycpu_top.v), mips_core : mips_core (mips_core.v), datapath : datapath (datapath.v)]", 5); // B (F, cr)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_axi_lite_top (soc_axi_lite_top.v), u_cpu : mycpu_top (mycpu_top.v), mips_core : mips_core (mips_core.v)]", 4, true); // B (F, cr) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_axi_lite_top (soc_axi_lite_top.v), u_cpu : mycpu_top (mycpu_top.v), mips_core : mips_core (mips_core.v)]", 4, true, false, false, false, false, true); // B (F, cr) - Double Click - Node
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_axi_lite_top (soc_axi_lite_top.v), u_cpu : mycpu_top (mycpu_top.v), mips_core : mips_core (mips_core.v)]", 4); // B (F, cr)
+// Elapsed time: 170 seconds
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_axi_lite_top (soc_axi_lite_top.v), u_cpu : mycpu_top (mycpu_top.v), mips_core : mips_core (mips_core.v), i_sram_to_sram_like : i_sram_to_sram_like (i_sram_to_sram_like.v)]", 6, false); // B (F, cr)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_axi_lite_top (soc_axi_lite_top.v), u_cpu : mycpu_top (mycpu_top.v), mips_core : mips_core (mips_core.v), i_sram_to_sram_like : i_sram_to_sram_like (i_sram_to_sram_like.v)]", 6, false, false, false, false, false, true); // B (F, cr) - Double Click
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_axi_lite_top (soc_axi_lite_top.v), u_cpu : mycpu_top (mycpu_top.v), mips_core : mips_core (mips_core.v), i_sram_to_sram_like : i_sram_to_sram_like (i_sram_to_sram_like.v)]", 6, false); // B (F, cr)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_axi_lite_top (soc_axi_lite_top.v), u_cpu : mycpu_top (mycpu_top.v), mips_core : mips_core (mips_core.v), i_sram_to_sram_like : i_sram_to_sram_like (i_sram_to_sram_like.v)]", 6, false, false, false, false, false, true); // B (F, cr) - Double Click
+selectCodeEditor("i_sram_to_sram_like.v", 175, 156); // ch (w, cr)
+selectCodeEditor("i_sram_to_sram_like.v", 175, 156, false, false, false, false, true); // ch (w, cr) - Double Click
+selectCodeEditor("i_sram_to_sram_like.v", 308, 597); // ch (w, cr)
+selectCodeEditor("i_sram_to_sram_like.v", 308, 597, false, false, false, false, true); // ch (w, cr) - Double Click
+selectCodeEditor("i_sram_to_sram_like.v", 307, 607); // ch (w, cr)
+selectCodeEditor("i_sram_to_sram_like.v", 303, 605, false, false, false, false, true); // ch (w, cr) - Double Click
+// HMemoryUtils.trashcanNow. Engine heap size: 933 MB. GUI used memory: 63 MB. Current time: 1/3/21, 3:47:58 PM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 933 MB. GUI used memory: 58 MB. Current time: 1/3/21, 4:17:59 PM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 933 MB. GUI used memory: 57 MB. Current time: 1/3/21, 4:47:59 PM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 933 MB. GUI used memory: 58 MB. Current time: 1/3/21, 5:17:59 PM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 933 MB. GUI used memory: 58 MB. Current time: 1/3/21, 5:48:00 PM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 933 MB. GUI used memory: 58 MB. Current time: 1/3/21, 6:18:00 PM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 933 MB. GUI used memory: 58 MB. Current time: 1/3/21, 6:48:00 PM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 933 MB. GUI used memory: 58 MB. Current time: 1/3/21, 7:18:01 PM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 933 MB. GUI used memory: 58 MB. Current time: 1/3/21, 7:48:01 PM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 933 MB. GUI used memory: 58 MB. Current time: 1/3/21, 8:18:01 PM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 933 MB. GUI used memory: 58 MB. Current time: 1/3/21, 8:48:02 PM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 933 MB. GUI used memory: 58 MB. Current time: 1/3/21, 9:18:02 PM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 933 MB. GUI used memory: 58 MB. Current time: 1/3/21, 9:48:02 PM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 933 MB. GUI used memory: 58 MB. Current time: 1/3/21, 10:18:03 PM CST
+// Elapsed time: 25447 seconds
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_axi_lite_top (soc_axi_lite_top.v), u_cpu : mycpu_top (mycpu_top.v), cache : cache (cache.v)]", 10, true); // B (F, cr) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_axi_lite_top (soc_axi_lite_top.v), u_cpu : mycpu_top (mycpu_top.v), cache : cache (cache.v)]", 10, true, false, false, false, false, true); // B (F, cr) - Double Click - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_axi_lite_top (soc_axi_lite_top.v), u_cpu : mycpu_top (mycpu_top.v), cache : cache (cache.v), i_cache : i_cache (i_cache.v)]", 11, false); // B (F, cr)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_axi_lite_top (soc_axi_lite_top.v), u_cpu : mycpu_top (mycpu_top.v), cache : cache (cache.v), i_cache : i_cache (i_cache.v)]", 11, false, false, false, false, false, true); // B (F, cr) - Double Click
+// Elapsed time: 11 seconds
+selectCodeEditor("i_cache.v", 227, 240, false, true, false, false, false); // ch (w, cr) - Control Key
+selectCodeEditor("i_cache.v", 237, 226); // ch (w, cr)
+selectCodeEditor("i_cache.v", 298, 153); // ch (w, cr)
+selectCodeEditor("i_cache.v", 303, 69); // ch (w, cr)
+selectCodeEditor("i_cache.v", 422, 85); // ch (w, cr)
+selectCodeEditor("i_cache.v", 399, 203); // ch (w, cr)
+selectCodeEditor("i_cache.v", 404, 53); // ch (w, cr)
+selectCodeEditor("i_cache.v", 282, 20); // ch (w, cr)
+selectCodeEditor("i_cache.v", 245, 35); // ch (w, cr)
+selectCodeEditor("i_cache.v", 221, 52); // ch (w, cr)
+selectCodeEditor("i_cache.v", 185, 96); // ch (w, cr)
+// Elapsed time: 61 seconds
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_axi_lite_top (soc_axi_lite_top.v), u_cpu : mycpu_top (mycpu_top.v), mips_core : mips_core (mips_core.v)]", 4); // B (F, cr)
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_axi_lite_top (soc_axi_lite_top.v), u_cpu : mycpu_top (mycpu_top.v), cache : cache (cache.v)]", 7); // B (F, cr)
+// Elapsed time: 14 seconds
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_axi_lite_top (soc_axi_lite_top.v), u_cpu : mycpu_top (mycpu_top.v)]", 3); // B (F, cr)
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_axi_lite_top (soc_axi_lite_top.v), u_cpu : mycpu_top (mycpu_top.v)]", 3); // B (F, cr)
+// Elapsed time: 71 seconds
+selectCodeEditor("i_cache.v", 359, 273); // ch (w, cr)
+// Elapsed time: 12 seconds
+selectCodeEditor("i_cache.v", 440, 61); // ch (w, cr)
+// HMemoryUtils.trashcanNow. Engine heap size: 933 MB. GUI used memory: 58 MB. Current time: 1/3/21, 10:48:03 PM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 933 MB. GUI used memory: 57 MB. Current time: 1/3/21, 11:18:03 PM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 933 MB. GUI used memory: 57 MB. Current time: 1/3/21, 11:48:04 PM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 933 MB. GUI used memory: 57 MB. Current time: 1/4/21, 12:18:04 AM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 933 MB. GUI used memory: 57 MB. Current time: 1/4/21, 12:48:04 AM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 933 MB. GUI used memory: 57 MB. Current time: 1/4/21, 1:18:05 AM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 933 MB. GUI used memory: 57 MB. Current time: 1/4/21, 1:48:05 AM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 933 MB. GUI used memory: 57 MB. Current time: 1/4/21, 2:18:05 AM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 933 MB. GUI used memory: 57 MB. Current time: 1/4/21, 2:48:06 AM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 933 MB. GUI used memory: 57 MB. Current time: 1/4/21, 3:18:06 AM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 933 MB. GUI used memory: 57 MB. Current time: 1/4/21, 3:48:06 AM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 933 MB. GUI used memory: 57 MB. Current time: 1/4/21, 4:18:07 AM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 933 MB. GUI used memory: 57 MB. Current time: 1/4/21, 4:48:07 AM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 933 MB. GUI used memory: 57 MB. Current time: 1/4/21, 5:18:07 AM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 933 MB. GUI used memory: 57 MB. Current time: 1/4/21, 5:48:08 AM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 933 MB. GUI used memory: 57 MB. Current time: 1/4/21, 6:18:08 AM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 933 MB. GUI used memory: 57 MB. Current time: 1/4/21, 6:48:08 AM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 933 MB. GUI used memory: 57 MB. Current time: 1/4/21, 7:18:09 AM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 933 MB. GUI used memory: 57 MB. Current time: 1/4/21, 7:48:09 AM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 933 MB. GUI used memory: 57 MB. Current time: 1/4/21, 8:18:09 AM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 933 MB. GUI used memory: 57 MB. Current time: 1/4/21, 8:48:10 AM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 933 MB. GUI used memory: 57 MB. Current time: 1/4/21, 9:18:10 AM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 933 MB. GUI used memory: 57 MB. Current time: 1/4/21, 9:48:10 AM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 933 MB. GUI used memory: 57 MB. Current time: 1/4/21, 10:18:11 AM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 933 MB. GUI used memory: 57 MB. Current time: 1/4/21, 10:48:11 AM CST
+// Elapsed time: 45728 seconds
+selectCodeEditor("i_cache.v", 42, 41); // ch (w, cr)
+// Elapsed time: 11 seconds
+selectMenu(PAResourceItoN.MainMenuMgr_REPORTS, "Reports"); // aa (q, cr)
+dismissMenu(PAResourceItoN.MainMenuMgr_REPORTS, "Reports"); // aa (q, cr)
+selectMenu(PAResourceItoN.MainMenuMgr_TOOLS, "Tools"); // aa (q, cr)
+selectMenu(RDIResourceCommand.RDICommands_CUSTOM_COMMANDS, "Custom Commands"); // af (cr)
+selectMenuItem(RDIResourceCommand.RDICommands_SETTINGS, "Settings..."); // ai (cr)
+dismissMenu(PAResourceItoN.MainMenuMgr_TOOLS, "Tools"); // aa (q, cr)
+// Run Command: RDIResourceCommand.RDICommands_SETTINGS
+// Tcl Command: 'rdi::info_commands {device::*}'
+// Tcl Command: 'rdi::info_commands {debug::*}'
+// Tcl Command: 'rdi::info_commands {*}'
+// I (cr): Settings: addNotify
+// WARNING: HEventQueue.dispatchEvent() is taking  1432 ms.
+// HMemoryUtils.trashcanNow. Engine heap size: 959 MB. GUI used memory: 67 MB. Current time: 1/4/21, 11:10:51 AM CST
+selectTree(PAResourceQtoS.SettingsDialog_OPTIONS_TREE, "[optionsRoot, Text Editor]", 8, true); // L (E, I) - Node
+selectComboBox(PAResourceQtoS.SettingsEditorPage_USE_THIS_DROP_DOWN_LIST_BOX_TO_SELECT, "Custom Editor...", 10); // aA (Q, I)
+// aC (I): Custom Editor Definition: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a (aC)
+dismissDialog("Custom Editor Definition"); // aC (I)
+selectButton(RDIResource.BaseDialog_APPLY, "Apply"); // a (I)
+// [GUI Memory]: 127 MB (+3445kb) [19:55:56]
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a (I)
+dismissDialog("Settings"); // I (cr)
+// [Engine Memory]: 991 MB (+15865kb) [19:55:59]
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_axi_lite_top (soc_axi_lite_top.v), u_cpu : mycpu_top (mycpu_top.v), cache : cache (cache.v)]", 7, true); // B (F, cr) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_axi_lite_top (soc_axi_lite_top.v), u_cpu : mycpu_top (mycpu_top.v), cache : cache (cache.v)]", 7, true, false, false, false, false, true); // B (F, cr) - Double Click - Node
+// Launch External Editor: 'C:/Users/fanqi/AppData/Local/Programs/Microsoft VS Code/Code.exe "C:/Users/fanqi/Documents/GitHub/Cache/Project/soc_axi_lite_loongson/rtl/myCPU/cache.v" -l1'
+// HMemoryUtils.trashcanNow. Engine heap size: 991 MB. GUI used memory: 76 MB. Current time: 1/4/21, 11:11:07 AM CST
+// Elapsed time: 40 seconds
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_axi_lite_top (soc_axi_lite_top.v), u_cpu : mycpu_top (mycpu_top.v), cache : cache (cache.v), d_cache : d_cache (d_cache.v)]", 9, false); // B (F, cr)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_axi_lite_top (soc_axi_lite_top.v), u_cpu : mycpu_top (mycpu_top.v), cache : cache (cache.v), d_cache : d_cache (d_cache.v)]", 9, false, false, false, false, false, true); // B (F, cr) - Double Click
+// Launch External Editor: 'C:/Users/fanqi/AppData/Local/Programs/Microsoft VS Code/Code.exe "C:/Users/fanqi/Documents/GitHub/Cache/Project/soc_axi_lite_loongson/rtl/myCPU/d_cache.v" -l33'
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// [GUI Memory]: 134 MB (+359kb) [20:03:40]
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 996 MB. GUI used memory: 76 MB. Current time: 1/4/21, 11:41:07 AM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 996 MB. GUI used memory: 74 MB. Current time: 1/4/21, 12:11:07 PM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 996 MB. GUI used memory: 74 MB. Current time: 1/4/21, 12:41:07 PM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 996 MB. GUI used memory: 74 MB. Current time: 1/4/21, 1:11:08 PM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 996 MB. GUI used memory: 74 MB. Current time: 1/4/21, 1:41:08 PM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 996 MB. GUI used memory: 73 MB. Current time: 1/4/21, 2:11:08 PM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 996 MB. GUI used memory: 73 MB. Current time: 1/4/21, 2:41:09 PM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 996 MB. GUI used memory: 73 MB. Current time: 1/4/21, 3:11:09 PM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 996 MB. GUI used memory: 74 MB. Current time: 1/4/21, 3:41:10 PM CST
+// Elapsed time: 16507 seconds
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_axi_lite_top (soc_axi_lite_top.v), u_cpu : mycpu_top (mycpu_top.v), cache : cache (cache.v)]", 7, true); // B (F, cr) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_axi_lite_top (soc_axi_lite_top.v), u_cpu : mycpu_top (mycpu_top.v), cache : cache (cache.v)]", 7, true, false, false, false, false, true); // B (F, cr) - Double Click - Node
+// Launch External Editor: 'C:/Users/fanqi/AppData/Local/Programs/Microsoft VS Code/Code.exe "C:/Users/fanqi/Documents/GitHub/Cache/Project/soc_axi_lite_loongson/rtl/myCPU/cache.v" -l1'
+// Elapsed time: 24 seconds
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_axi_lite_top (soc_axi_lite_top.v), u_cpu : mycpu_top (mycpu_top.v), cache : cache (cache.v)]", 7, true, false, false, false, true, false); // B (F, cr) - Popup Trigger - Node
+selectMenu(PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, "Hierarchy Update"); // af (ao, cr)
+selectMenu(PAResourceQtoS.SrcMenu_IP_HIERARCHY, "IP Hierarchy"); // af (ao, cr)
+selectMenuItem(PAResourceCommand.PACommandNames_GOTO_INSTANTIATION, "Go to Source"); // ai (ao, cr)
+// Run Command: PAResourceCommand.PACommandNames_GOTO_INSTANTIATION
+// Launch External Editor: 'C:/Users/fanqi/AppData/Local/Programs/Microsoft VS Code/Code.exe "C:/Users/fanqi/Documents/GitHub/Cache/Project/soc_axi_lite_loongson/rtl/myCPU/mycpu_top.v" -l218'
+// HMemoryUtils.trashcanNow. Engine heap size: 996 MB. GUI used memory: 74 MB. Current time: 1/4/21, 4:11:10 PM CST
+// HMemoryUtils.trashcanNow. Engine heap size: 996 MB. GUI used memory: 74 MB. Current time: 1/4/21, 4:41:10 PM CST
+// Elapsed time: 4081 seconds
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_axi_lite_top (soc_axi_lite_top.v), u_cpu : mycpu_top (mycpu_top.v), cache : cache (cache.v)]", 7); // B (F, cr)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_axi_lite_top (soc_axi_lite_top.v), u_cpu : mycpu_top (mycpu_top.v), cache : cache (cache.v), d_cache : d_cache (d_cache.v)]", 9, false); // B (F, cr)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_axi_lite_top (soc_axi_lite_top.v), u_cpu : mycpu_top (mycpu_top.v), cache : cache (cache.v), d_cache : d_cache (d_cache.v)]", 9, false, false, false, false, false, true); // B (F, cr) - Double Click
+// Launch External Editor: 'C:/Users/fanqi/AppData/Local/Programs/Microsoft VS Code/Code.exe "C:/Users/fanqi/Documents/GitHub/Cache/Project/soc_axi_lite_loongson/rtl/myCPU/d_cache.v" -l33'
